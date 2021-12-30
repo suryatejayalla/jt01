@@ -71,7 +71,7 @@ resource "aws_network_interface" "ni" {
 }
 
 resource "aws_instance" "ec2" {
-  ami           = "ami-0567e0d2b4b2169ae"
+  ami           = "ami-0fb653ca2d3203ac1"
   instance_type = "t2.micro"
   key_name      = "ohio"
   depends_on    =  [aws_vpc.vpc1, aws_subnet.subnet1]
