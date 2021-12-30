@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "suryatf"
+    bucket = "infra-tf01"
     key    = "infra-terraform/"
     region = "us-east-2"
   }
