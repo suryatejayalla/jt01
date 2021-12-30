@@ -15,7 +15,7 @@ resource "aws_vpc" "vpc1" {
 
   
   tags = {
-    Name = coupa-vpc
+    Name = "coupa-vpc"
   }
 }
 resource "aws_subnet" "subnet1" {
