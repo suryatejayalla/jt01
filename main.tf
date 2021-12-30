@@ -1,4 +1,10 @@
-
+terraform {
+  backend "s3" {
+    bucket = "suryatf"
+    key    = "infra-terraform/"
+    region = "us-east-2"
+  }
+}
 data "aws_availability_zones" "available" {
   state = "available"
 }
@@ -67,6 +73,7 @@ resource "aws_instance" "ec2" {
   ami           = "ami-0567e0d2b4b2169ae"
   instance_type = "t2.micro"
   key_name      = "ohio"
+  depends_on    =  [aws_vpc.vpc1, aws_subnet.subnet1]
 
   network_interface {
     network_interface_id = aws_network_interface.ni.id
