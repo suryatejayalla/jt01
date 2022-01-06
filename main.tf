@@ -10,35 +10,35 @@ data "aws_availability_zones" "available" {
 }
 
 resource "aws_vpc" "vpc1" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block       = "${var.cidr}"
   instance_tenancy = "default"
 
   
   tags = {
-    Name = "coupa-vpc"
+    Name = "${var.vpc_name}"
   }
 }
 resource "aws_subnet" "subnet1" {
   vpc_id     = aws_vpc.vpc1.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = "${var.sub_cidr}"
   availability_zone = data.aws_availability_zones.available.names[0]
   
   tags = {
-    Name = "pubsubnet"
+    Name = "${var.subnet_name}"
   }
 }
 resource "aws_internet_gateway" "gw" {
   vpc_id     = aws_vpc.vpc1.id
 
   tags = {
-    Name = "ig"
+    Name = "${var.ig_name}"
 }
 }
 resource "aws_route_table" "public" {
   vpc_id     = aws_vpc.vpc1.id
 
   tags = {
-    Name = "pubroute"
+    Name = "${var.route_name}"
 }
 }
 resource "aws_route_table_association" "sn" {
@@ -51,14 +51,14 @@ resource "aws_route_table_association" "b" {
 }
 
 data "aws_vpc" "vpc1" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block       = "${var.cidr}"
   depends_on       =  [aws_vpc.vpc1, aws_subnet.subnet1]
 
 }
 
 data "aws_subnet" "subnet1" {
   vpc_id     = "${data.aws_vpc.vpc1.id}"
-  cidr_block = "10.0.1.0/24"
+  cidr_block = "${var.sub_cidr}"
 
 }
 
@@ -87,6 +87,6 @@ resource "aws_instance" "ec2" {
   }
 
     tags = {
-      Name = "coupa"
+      Name = "${var.instance_name}"
   }
 }
