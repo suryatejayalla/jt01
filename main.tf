@@ -52,6 +52,7 @@ resource "aws_route_table_association" "b" {
 
 data "aws_vpc" "vpc1" {
   cidr_block       = "10.0.0.0/16"
+  depends_on       =  [aws_vpc.vpc1, aws_subnet.subnet1]
 
 }
 
