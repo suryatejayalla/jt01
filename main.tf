@@ -72,7 +72,7 @@ resource "aws_network_interface" "ni" {
 
 resource "aws_instance" "ec2" {
   ami           = "ami-0567e0d2b4b2169ae"
-  instance_type = ${var.instance_type}
+  instance_type = "${var.instance_type}"
   key_name      = "ohio"
   depends_on    =  [aws_vpc.vpc1, aws_subnet.subnet1]
 }
