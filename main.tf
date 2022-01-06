@@ -75,6 +75,7 @@ resource "aws_instance" "ec2" {
   instance_type = ${var.instance_type}
   key_name      = "ohio"
   depends_on    =  [aws_vpc.vpc1, aws_subnet.subnet1]
+}
 
   network_interface {
     network_interface_id = aws_network_interface.ni.id
