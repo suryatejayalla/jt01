@@ -77,16 +77,16 @@ resource "aws_instance" "ec2" {
   depends_on    =  [aws_vpc.vpc1, aws_subnet.subnet1]
 }
 
-  network_interface {
-    network_interface_id = aws_network_interface.ni.id
-    device_index         = 0
+network_interface {
+  network_interface_id = aws_network_interface.ni.id
+  device_index         = 0
   }
 
-  credit_specification {
-    cpu_credits = "unlimited"
+credit_specification {
+  cpu_credits = "unlimited"
 
   }
 
-  tags = {
-    Name = "coupa"
+tags = {
+  Name = "coupa"
   }
