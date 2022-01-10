@@ -18,6 +18,7 @@ resource "aws_vpc" "vpc1" {
     Name = "${var.vpc_name}"
   }
 }
+
 resource "aws_subnet" "subnet1" {
   vpc_id     = aws_vpc.vpc1.id
   cidr_block = "${var.sub_cidr}"
@@ -27,24 +28,28 @@ resource "aws_subnet" "subnet1" {
     Name = "${var.subnet_name}"
   }
 }
+
 resource "aws_internet_gateway" "gw" {
   vpc_id     = aws_vpc.vpc1.id
 
   tags = {
     Name = "${var.ig_name}"
+  }
 }
-}
+
 resource "aws_route_table" "public" {
   vpc_id     = aws_vpc.vpc1.id
 
   tags = {
     Name = "${var.route_name}"
+  }
 }
-}
+
 resource "aws_route_table_association" "sn" {
   subnet_id      = aws_subnet.subnet1.id
   route_table_id = aws_route_table.public.id
 }
+
 resource "aws_route_table_association" "b" {
   gateway_id     = aws_internet_gateway.gw.id
   route_table_id = aws_route_table.public.id
