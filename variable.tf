@@ -10,7 +10,7 @@ variable "sub_cidr"{
 variable "subnet_name"{
     type = string
 }
-variable "availability_zone"{
+variable "az"{
     type = string
 }
 variable "ig_name"{
