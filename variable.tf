@@ -28,3 +28,5 @@ variable "instance_name"{
 variable "region"{
     type = string
 }
+variable "sg_name"{
+    type = string
