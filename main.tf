@@ -109,7 +109,7 @@ resource "aws_security_group" "sg" {
 
 resource "aws_network_interface" "ni" {
   subnet_id   = "${data.aws_subnet.subnet1.id}"
-  security_groups   = aws_security_group.sg.id
+  security_group_id   = aws_security_group.sg.id
   
   tags = {
     Name = "primary_network_interface"
