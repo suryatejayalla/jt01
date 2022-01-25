@@ -115,6 +115,11 @@ resource "aws_security_group" "sg" {
 
 }
 
+resource "aws_network_interface_sg_attachment" "sg_attachment" {
+  security_groups   = ["${aws_security_group.sg.name}"]
+  network_interface_id = aws_network_interface.ni.id
+}
+
 resource "aws_instance" "ec2" {
   ami           = "ami-0fb653ca2d3203ac1"
   instance_type = "${var.instance_type}"
