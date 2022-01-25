@@ -67,14 +67,6 @@ data "aws_subnet" "subnet1" {
    
 }
 
-
-resource "aws_network_interface" "ni" {
-  subnet_id   = "${data.aws_subnet.subnet1.id}"
-  tags = {
-    Name = "primary_network_interface"
-  }
-}
-
 resource "aws_security_group" "sg" {
   name        = "${var.sg_name}"
   description = "Allow TLS inbound traffic"
@@ -113,6 +105,15 @@ resource "aws_security_group" "sg" {
     Name = "${var.sg_name}"
   }
 
+}
+
+resource "aws_network_interface" "ni" {
+  subnet_id   = "${data.aws_subnet.subnet1.id}"
+  security_group_id   = aws_security_group.sg.id
+  
+  tags = {
+    Name = "primary_network_interface"
+  }
 }
 
 resource "aws_network_interface_sg_attachment" "sg_attachment" {
