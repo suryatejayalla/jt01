@@ -55,18 +55,6 @@ resource "aws_route_table_association" "b" {
   route_table_id = aws_route_table.public.id
 }
 
-data "aws_vpc" "vpc1" {
-  cidr_block       = "${var.cidr}"
-  depends_on       =  [aws_vpc.vpc1, aws_subnet.subnet1]
-
-}
-
-data "aws_subnet" "subnet1" {
-  vpc_id     = "${data.aws_vpc.vpc1.id}"
-  cidr_block = "${var.sub_cidr}"
-   
-}
-
 resource "aws_security_group" "sg" {
   name        = "${var.sg_name}"
   description = "Allow TLS inbound traffic"
@@ -106,7 +94,17 @@ resource "aws_security_group" "sg" {
   }
 
 }
+data "aws_vpc" "vpc1" {
+  cidr_block       = "${var.cidr}"
+  depends_on       =  [aws_vpc.vpc1, aws_subnet.subnet1]
 
+}
+
+data "aws_subnet" "subnet1" {
+  vpc_id     = "${data.aws_vpc.vpc1.id}"
+  cidr_block = "${var.sub_cidr}"
+   
+}
 
 resource "aws_instance" "ec2" {
   ami           = "ami-0fb653ca2d3203ac1"
