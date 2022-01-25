@@ -114,9 +114,10 @@ resource "aws_security_group" "sg" {
   }
 
 }
+aws_network_interface.ni.id
 
 resource "aws_network_interface_sg_attachment" "sg_attachment" {
-  security_groups   = ["${aws_security_group.sg.name}"]
+  security_group_ids   = aws_security_group.sg.id
   network_interface_id = aws_network_interface.ni.id
 }
 
