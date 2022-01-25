@@ -125,7 +125,7 @@ resource "aws_instance" "ec2" {
   ami           = "ami-0fb653ca2d3203ac1"
   instance_type = "${var.instance_type}"
   key_name      = "ohio"
-  security_groups = ["${aws_security_group.sg.name}"]
+  security_groups = [aws_security_group.sg.id]
   depends_on    =  [aws_vpc.vpc1, aws_subnet.subnet1]
 
   network_interface {
