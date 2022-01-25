@@ -107,19 +107,6 @@ resource "aws_security_group" "sg" {
 
 }
 
-resource "aws_network_interface" "ni" {
-  subnet_id   = "${data.aws_subnet.subnet1.id}"
-  security_groups   = [aws_security_group.sg.id]
-  
-  tags = {
-    Name = "primary_network_interface"
-  }
-}
-
-resource "aws_network_interface_sg_attachment" "sg_attachment" {
-  security_group_id  = aws_security_group.sg.id
-  network_interface_id = aws_network_interface.ni.id
-}
 
 resource "aws_instance" "ec2" {
   ami           = "ami-0fb653ca2d3203ac1"
@@ -127,16 +114,6 @@ resource "aws_instance" "ec2" {
   key_name      = "ohio"
   security_groups = [aws_security_group.sg.id]
   depends_on    =  [aws_vpc.vpc1, aws_subnet.subnet1]
-
-  network_interface {
-    network_interface_id = aws_network_interface.ni.id
-    device_index         = 0
-  }
-  
-    credit_specification {
-      cpu_credits = "unlimited"
-
-  }
 
     tags = {
       Name = "${var.instance_name}"
