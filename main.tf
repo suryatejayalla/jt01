@@ -17,7 +17,7 @@ resource "aws_vpc" "vpc1" {
 resource "aws_subnet" "subnet1" {
   vpc_id     = aws_vpc.vpc1.id
   cidr_block = "${var.sub_cidr}"
-  availability_zone = data.aws_availability_zones.available.names["${var.az}"]
+  availability_zone = data.aws_availability_zones.available.names[0]
 
   tags = {
     Name = "${var.subnet_name}"
