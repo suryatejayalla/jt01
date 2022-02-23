@@ -1,9 +1,4 @@
 terraform {
-  backend "s3" {
-    bucket = "infra-tf01"
-    key    = "infra-terraform/"
-    region = "us-east-2"
-  }
 }
 data "aws_availability_zones" "available" {
   state = "available"
