@@ -9,6 +9,6 @@ route_name="test_route_table_name"
 sg_name="test_sg_group"
 instance_type="t2.micro"
 aws_access_key="test_instance"
-aws_secret_key="AKIA3F7C2QQ3HB4DYFNF"
-instance_name="OgfnvgTaUgToCsCUIdccnK6KzCoocVo3fMFxrTe"
+aws_secret_key="AKIAUVN3XXZQGTAEJ2XO"
+instance_name="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"
   
