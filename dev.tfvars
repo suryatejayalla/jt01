@@ -1,7 +1,7 @@
 region="ap-south-1"
 cidr="192.168.0.0/16"
 vpc_name="test_vpc_name"
-sub_cidr="192.1681.0/24"
+sub_cidr="192.168.1.0/24"
 az="ap-south-1a"
 subnet_name="test_subnet_name"
 ig_name="test_ig_name"
