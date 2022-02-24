@@ -104,7 +104,7 @@ data "aws_subnet" "subnet1" {
 resource "aws_instance" "ec2" {
   ami           = "ami-055d15d9cfddf7bd3"
   instance_type = "${var.instance_type}"
-  key_name      = "ohio"
+  key_name      = "Masternodes"
   subnet_id     =  "${data.aws_subnet.subnet1.id}"
   vpc_security_group_ids = [aws_security_group.sg.id]
   depends_on    =  [aws_vpc.vpc1, aws_subnet.subnet1]
