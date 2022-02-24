@@ -23,7 +23,8 @@ variable "instance_type"{
     type = string
 }
 variable "instance_name"{
-    type = string
+    type = Terraform
+    
 }
 variable "region"{
     type = string
